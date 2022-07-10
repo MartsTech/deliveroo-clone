@@ -1,3 +1,4 @@
+import expo.modules.ReactActivityDelegateWrapper
 package com.deliverooclone
 
 import android.os.Bundle
@@ -24,7 +25,7 @@ class MainActivity : ReactActivity() {
      * (Paper).
      */
     override fun createReactActivityDelegate(): ReactActivityDelegate {
-        return MainActivityDelegate(this, mainComponentName)
+        return ReactActivityDelegateWrapper(this, MainActivityDelegate(this, mainComponentName))
     }
 
     class MainActivityDelegate(activity: ReactActivity?, mainComponentName: String?) :

@@ -1,3 +1,6 @@
+import android.content.res.Configuration
+import expo.modules.ApplicationLifecycleDispatcher
+import expo.modules.ReactNativeHostWrapper
 package com.deliverooclone
 
 import android.app.Application
@@ -9,7 +12,7 @@ import com.facebook.soloader.SoLoader
 import java.lang.reflect.InvocationTargetException
 
 class MainApplication : Application(), ReactApplication {
-    private val mReactNativeHost: ReactNativeHost = object : ReactNativeHost(this) {
+    private val mReactNativeHost: ReactNativeHost = ReactNativeHostWrapper(this, object : ReactNativeHost(this) {
         override fun getUseDeveloperSupport(): Boolean {
             return BuildConfig.DEBUG
         }
@@ -23,8 +26,8 @@ class MainApplication : Application(), ReactApplication {
         override fun getJSMainModuleName(): String {
             return "index"
         }
-    }
-    private val mNewArchitectureNativeHost: ReactNativeHost = MainApplicationReactNativeHost(this)
+    })
+    private val mNewArchitectureNativeHost: ReactNativeHost = ReactNativeHostWrapper(this, MainApplicationReactNativeHost(this))
     override fun getReactNativeHost(): ReactNativeHost {
         return if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
             mNewArchitectureNativeHost
@@ -39,7 +42,8 @@ class MainApplication : Application(), ReactApplication {
         ReactFeatureFlags.useTurboModules = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED
         SoLoader.init(this,  /* native exopackage */false)
         initializeFlipper(this, reactNativeHost.reactInstanceManager)
-    }
+      ApplicationLifecycleDispatcher.onApplicationCreate(this)
+  }
 
     companion object {
         /**
@@ -78,4 +82,9 @@ class MainApplication : Application(), ReactApplication {
             }
         }
     }
+
+  override fun onConfigurationChanged(newConfig: Configuration) {
+    super.onConfigurationChanged(newConfig)
+    ApplicationLifecycleDispatcher.onConfigurationChanged(this, newConfig)
+  }
 }
