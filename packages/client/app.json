@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "DeliverooClone",
+    "slug": "DeliverooClone",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
