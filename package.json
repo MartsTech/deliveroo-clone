@@ -3,12 +3,11 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "expo start",
-    "android": "expo run:android",
-    "ios": "expo run:ios",
-    "web": "expo start --web",
-    "postinstall": "expo-yarn-workspaces check-workspace-dependencies",
-    "app": "yarn workspace @expo/app expo start"
+    "start": "yarn workspace client start",
+    "android": "yarn workspace client android",
+    "ios": "yarn workspace client ios",
+    "web": "yarn workspace client web",
+    "postinstall": "expo-yarn-workspaces check-workspace-dependencies"
   },
   "workspaces": [
     "packages/*"
