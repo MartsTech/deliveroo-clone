@@ -15,7 +15,7 @@
     "packages/*"
   ],
   "devDependencies": {
-    "expo-yarn-workspaces": "^1.5.0",
+    "expo-yarn-workspaces": "^2.0.0",
     "husky": "^8.0.0"
   },
   "private": true
