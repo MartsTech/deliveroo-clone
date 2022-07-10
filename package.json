@@ -8,13 +8,15 @@
     "ios": "yarn workspace client ios",
     "web": "yarn workspace client web",
     "sanity": "yarn workspace sanity start",
+    "prepare": "husky install",
     "postinstall": "expo-yarn-workspaces check-workspace-dependencies"
   },
   "workspaces": [
     "packages/*"
   ],
   "devDependencies": {
-    "expo-yarn-workspaces": "^1.5.0"
+    "expo-yarn-workspaces": "^1.5.0",
+    "husky": "^8.0.0"
   },
   "private": true
 }

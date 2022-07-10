@@ -6,6 +6,12 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
+    "test": "jest",
+    "format": "prettier --write ./",
+    "check-format": "prettier --check ./",
+    "check-lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "check-types": "tsc --pretty --noEmit",
+    "check-all": "yarn check-format && yarn check-lint && yarn check-types",
     "postinstall": "expo-yarn-workspaces postinstall"
   },
   "dependencies": {
@@ -18,7 +24,36 @@
     "react-native-web": "0.17.7"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9"
+    "@babel/core": "^7.12.9",
+    "@babel/runtime": "^7.18.6",
+    "@react-native-community/eslint-config": "^3.0.3",
+    "@types/jest": "^28.1.4",
+    "@types/react-native": "^0.69.2",
+    "@types/react-test-renderer": "^18.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.30.5",
+    "@typescript-eslint/parser": "^5.30.5",
+    "babel-jest": "^28.1.2",
+    "eslint": "^8.19.0",
+    "eslint-config-prettier": "^8.5.0",
+    "jest": "^28.1.2",
+    "prettier": "^2.7.1",
+    "prettier-plugin-tailwindcss": "^0.1.12",
+    "react-test-renderer": "^18.2.0",
+    "typescript": "^4.7.4"
+  },
+  "resolutions": {
+    "@types/react": "^17"
+  },
+  "jest": {
+    "preset": "react-native",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
   },
   "expo-yarn-workspaces": {
     "symlinks": [
