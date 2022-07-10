@@ -2,8 +2,9 @@
   "name": "DeliverooClone",
   "displayName": "DeliverooClone",
   "expo": {
-    "name": "DeliverooClone",
+    "name": "Deliveroo Clone",
     "slug": "deliveroo-clone",
-    "sdkVersion": "45.0.0"
+    "sdkVersion": "45.0.0",
+    "icon": "./assets/logo.png"
   }
 }
