@@ -12,12 +12,7 @@ const HomeCategories = () => {
       keyExtractor={item => item}
       horizontal
       showsHorizontalScrollIndicator={false}
-      renderItem={({item}) => (
-        <HomeCategory
-          title={item}
-          source={require('../../../../../assets/images/avatar.png')}
-        />
-      )}
+      renderItem={({item}) => <HomeCategory title={item} url={item} />}
     />
   );
 };
