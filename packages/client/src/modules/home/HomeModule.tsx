@@ -1,34 +1,39 @@
-import React from 'react';
-import {ScrollView} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {FlatList, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Header from '../../components/header';
 import Search from '../../components/search';
+import fetchCategoryList from '../../utils/categories/fetchCategoryList';
+import fetchFeaturedList from '../../utils/featured/fetchFeaturedList';
 import HomeCategories from './components/categories';
-import HomeRestaurants from './components/restaurants';
+import HomeFeatured from './components/featured';
 
 const HomeModule = () => {
+  const [featured, setFeatured] = useState<FeaturedModel[]>([]);
+  const [categories, setCategories] = useState<CategoryModel[]>([]);
+
+  useEffect(() => {
+    fetchFeaturedList().then(data => {
+      setFeatured(data);
+    });
+    fetchCategoryList().then(data => {
+      setCategories(data);
+    });
+  }, []);
+
   return (
     <SafeAreaView className="bg-white">
       <Header />
       <Search />
-      <ScrollView className="bg-gray-100 pb-24">
-        <HomeCategories />
-        <HomeRestaurants
-          title="Featured"
-          description="Paid placements from our partners."
-          category="featured"
+      <View className="bg-gray-100 pb-[420]">
+        <HomeCategories categories={categories} />
+        <FlatList
+          className="mt-4"
+          data={featured}
+          keyExtractor={item => item._id}
+          renderItem={({item}) => <HomeFeatured {...item} />}
         />
-        <HomeRestaurants
-          title="Tasty Discounts"
-          description="Everyone's been enjoying these juicy discounts!"
-          category="discounts"
-        />
-        <HomeRestaurants
-          title="Offers near you"
-          description="Why not support your local restaurant tonight?"
-          category="offers"
-        />
-      </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };

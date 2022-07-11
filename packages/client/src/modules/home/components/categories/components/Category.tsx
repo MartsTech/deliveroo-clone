@@ -1,17 +1,13 @@
 import React from 'react';
 import {Image, Text, TouchableOpacity} from 'react-native';
+import {urlFor} from '../../../../../utils/sanity';
 
-interface Props {
-  title: string;
-  url: string;
-}
-
-const HomeCategory: React.FC<Props> = ({title}) => {
+const HomeCategory: React.FC<CategoryModel> = ({title, image}) => {
   return (
     <TouchableOpacity className="relative mr-2">
       <Image
         className="h-20 w-20 rounded"
-        source={require('../../../../../../assets/images/avatar.png')}
+        source={{uri: urlFor(image).url()}}
       />
       <Text className="absolute bottom-1 left-1 font-bold text-white">
         {title}

@@ -1,6 +1,6 @@
 import HomeCategories from './components/categories';
-import HomeRestaurants from './components/restaurants';
+import HomeFeatured from './components/featured';
 import HomeModule from './HomeModule';
 
-export {HomeCategories, HomeRestaurants};
+export {HomeCategories, HomeFeatured};
 export default HomeModule;

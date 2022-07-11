@@ -1,12 +1,16 @@
 interface RestaurantModel {
-  id: string;
-  url: string;
+  _type: 'restaurant';
+  _id: string;
+  _rev: string;
+  _createdAt: string;
+  _updatedAt: string;
   title: string;
-  rating: number;
-  genre: string;
-  address: string;
-  short_description: string;
-  dishes: string[];
-  long: number;
+  description: string;
   lat: number;
+  long: number;
+  rating: number;
+  address: string;
+  image: Image;
+  category: CategoryModel;
+  dishes: DishModel[];
 }

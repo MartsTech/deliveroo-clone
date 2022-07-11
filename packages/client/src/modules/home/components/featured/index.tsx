@@ -1,5 +1,5 @@
 import HomeRestaurant from './components/Restaurant';
-import HomeRestaurants from './Restaurants';
+import HomeFeatured from './Featured';
 
 export {HomeRestaurant};
-export default HomeRestaurants;
+export default HomeFeatured;

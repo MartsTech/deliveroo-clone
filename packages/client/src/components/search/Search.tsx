@@ -5,8 +5,8 @@ import colors from '../../constants/colors';
 
 const Search = () => {
   return (
-    <View className="mx-4 flex-row items-center space-x-2 pb-2">
-      <View className="flex-1 flex-row items-center space-x-3 bg-gray-200 p-3">
+    <View className="mx-4 flex-row items-center space-x-3 pb-2">
+      <View className="flex-1 flex-row items-center space-x-4 bg-gray-200 p-3">
         <SearchIcon color="gray" size={20} />
         <TextInput
           placeholder="Restaurants and cuisines"
