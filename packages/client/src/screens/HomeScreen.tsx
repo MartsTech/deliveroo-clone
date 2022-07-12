@@ -1,4 +1,5 @@
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {StatusBar} from 'expo-status-bar';
 import React, {useLayoutEffect} from 'react';
 import HomeModule from '../modules/home';
 import type {RootStackParamList} from '../types/navigation';
@@ -12,7 +13,12 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
     });
   }, [navigation]);
 
-  return <HomeModule />;
+  return (
+    <>
+      <HomeModule />
+      <StatusBar style="dark" />
+    </>
+  );
 };
 
 export default HomeScreen;

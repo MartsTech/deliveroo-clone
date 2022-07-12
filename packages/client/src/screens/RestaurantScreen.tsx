@@ -1,4 +1,5 @@
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {StatusBar} from 'expo-status-bar';
 import React, {useLayoutEffect} from 'react';
 import RestaurantModule from '../modules/restaurant';
 import type {RootStackParamList} from '../types/navigation';
@@ -12,7 +13,12 @@ const RestaurantScreen: React.FC<Props> = ({navigation, route}) => {
     });
   }, [navigation]);
 
-  return <RestaurantModule restaurant={route.params.restaurant} />;
+  return (
+    <>
+      <RestaurantModule restaurant={route.params.restaurant} />
+      <StatusBar style="light" />
+    </>
+  );
 };
 
 export default RestaurantScreen;
