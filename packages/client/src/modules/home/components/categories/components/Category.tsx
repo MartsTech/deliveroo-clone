@@ -2,7 +2,11 @@ import React from 'react';
 import {Image, Text, TouchableOpacity} from 'react-native';
 import {urlFor} from '../../../../../utils/sanity';
 
-const HomeCategory: React.FC<CategoryModel> = ({title, image}) => {
+interface Props {
+  category: CategoryModel;
+}
+
+const HomeCategory: React.FC<Props> = ({category: {title, image}}) => {
   return (
     <TouchableOpacity className="relative mr-2">
       <Image

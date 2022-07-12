@@ -31,7 +31,7 @@ const HomeModule = () => {
           className="mt-4"
           data={featured}
           keyExtractor={item => item._id}
-          renderItem={({item}) => <HomeFeatured {...item} />}
+          renderItem={({item}) => <HomeFeatured featured={item} />}
         />
       </View>
     </SafeAreaView>

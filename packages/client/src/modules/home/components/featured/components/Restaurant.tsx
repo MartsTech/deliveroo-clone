@@ -4,12 +4,12 @@ import {LocationMarkerIcon} from 'react-native-heroicons/outline';
 import {StarIcon} from 'react-native-heroicons/solid';
 import {urlFor} from '../../../../../utils/sanity';
 
-const HomeRestaurant: React.FC<RestaurantModel> = ({
-  title,
-  rating,
-  address,
-  image,
-  category,
+interface Props {
+  restaurant: RestaurantModel;
+}
+
+const HomeRestaurant: React.FC<Props> = ({
+  restaurant: {title, rating, address, image, category},
 }) => {
   return (
     <TouchableOpacity className="mr-3 bg-white shadow">

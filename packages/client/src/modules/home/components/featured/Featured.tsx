@@ -4,10 +4,12 @@ import {ArrowRightIcon} from 'react-native-heroicons/outline';
 import colors from '../../../../constants/colors';
 import HomeRestaurant from './components/Restaurant';
 
-const HomeFeatured: React.FC<FeaturedModel> = ({
-  title,
-  description,
-  restaurants,
+interface Props {
+  featured: FeaturedModel;
+}
+
+const HomeFeatured: React.FC<Props> = ({
+  featured: {title, description, restaurants},
 }) => {
   return (
     <View>
@@ -22,7 +24,7 @@ const HomeFeatured: React.FC<FeaturedModel> = ({
         keyExtractor={item => item._id}
         horizontal
         showsHorizontalScrollIndicator={false}
-        renderItem={({item}) => <HomeRestaurant {...item} />}
+        renderItem={({item}) => <HomeRestaurant restaurant={item} />}
       />
     </View>
   );

@@ -14,7 +14,7 @@ const HomeCategories: React.FC<Props> = ({categories}) => {
       keyExtractor={item => item._id}
       horizontal
       showsHorizontalScrollIndicator={false}
-      renderItem={({item}) => <HomeCategory {...item} />}
+      renderItem={({item}) => <HomeCategory category={item} />}
     />
   );
 };
