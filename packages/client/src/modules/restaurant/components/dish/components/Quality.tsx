@@ -3,15 +3,21 @@ import {Text, TouchableOpacity, View} from 'react-native';
 import {MinusCircleIcon, PlusCircleIcon} from 'react-native-heroicons/solid';
 import colors from '../../../../../constants/colors';
 
-const RestaurantDishQuality = () => {
+interface Props {
+  count: number;
+  onAdd: () => void;
+  onRemove: () => void;
+}
+
+const RestaurantDishQuality: React.FC<Props> = ({count, onAdd, onRemove}) => {
   return (
     <View className="bg-white px-4">
       <View className="flex-row items-center pb-3">
-        <TouchableOpacity>
+        <TouchableOpacity onPress={onRemove}>
           <MinusCircleIcon color={colors.primary} size={40} />
         </TouchableOpacity>
-        <Text className="mx-2">0</Text>
-        <TouchableOpacity>
+        <Text className="mx-2">{count}</Text>
+        <TouchableOpacity onPress={onAdd}>
           <PlusCircleIcon color={colors.primary} size={40} />
         </TouchableOpacity>
       </View>

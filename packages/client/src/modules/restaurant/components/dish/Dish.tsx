@@ -1,6 +1,13 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Currency from 'react-currency-formatter';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
+import {useDispatch} from 'react-redux';
+import {
+  addBasketDish,
+  removeBasketDish,
+  selectBasketDishCount,
+} from '../../../../stores/basketStore';
+import {useAppSelector} from '../../../../stores/store';
 import {urlFor} from '../../../../utils/sanity';
 import RestaurantDishQuality from './components/Quality';
 
@@ -8,18 +15,18 @@ interface Props {
   dish: DishModel;
 }
 
-const RestaurantDish: React.FC<Props> = ({
-  dish: {title, description, price, image},
-}) => {
-  const [isPressed, setIsPressed] = useState(false);
+const RestaurantDish: React.FC<Props> = ({dish}) => {
+  const {_id, title, description, price, image} = dish;
+  const count = useAppSelector(state => selectBasketDishCount(state, _id));
+  const dispatch = useDispatch();
 
   return (
     <>
       <TouchableOpacity
         className={`border border-gray-200 bg-white p-4 ${
-          isPressed && 'border-b-0'
+          count > 0 && 'border-b-0'
         }`}
-        onPress={() => setIsPressed(value => !value)}>
+        onPress={() => count === 0 && dispatch(addBasketDish(dish))}>
         <View className="flex-row">
           <View className="flex-1 pr-2">
             <Text className="mb-1 text-lg">{title}</Text>
@@ -36,7 +43,13 @@ const RestaurantDish: React.FC<Props> = ({
           </View>
         </View>
       </TouchableOpacity>
-      {isPressed && <RestaurantDishQuality />}
+      {count > 0 && (
+        <RestaurantDishQuality
+          count={count}
+          onAdd={() => dispatch(addBasketDish(dish))}
+          onRemove={() => dispatch(removeBasketDish(dish))}
+        />
+      )}
     </>
   );
 };
