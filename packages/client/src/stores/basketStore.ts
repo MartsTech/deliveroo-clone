@@ -20,7 +20,6 @@ export const basketSlice = createSlice({
       const index = state.dishes.findIndex(
         item => item._id === action.payload._id,
       );
-
       if (index !== -1) {
         const copy = [...state.dishes];
         copy.splice(index, 1);
@@ -36,5 +35,8 @@ export const selectBasketDishList = (state: RootState) => state.basket.dishes;
 
 export const selectBasketDishCount = (state: RootState, id: string) =>
   state.basket.dishes.filter(dish => dish._id === id).length;
+
+export const selectBasketTotal = (state: RootState) =>
+  state.basket.dishes.reduce((total, item) => (total += item.price), 0);
 
 export default basketSlice.reducer;

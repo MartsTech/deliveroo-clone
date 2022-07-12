@@ -1,3 +1,4 @@
+import RestaurantBasket from './components/basket';
 import RestaurantDescription from './components/description';
 import RestaurantDish from './components/dish';
 import RestaurantHeader from './components/header';
@@ -9,5 +10,6 @@ export {
   RestaurantDescription,
   RestaurantOption,
   RestaurantDish,
+  RestaurantBasket,
 };
 export default RestaurantModule;
