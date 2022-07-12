@@ -6,10 +6,12 @@ import {
 } from '@reduxjs/toolkit';
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 import categoryReducer from './categoryStore';
+import featuredReducer from './featuredStore';
 
 export const store = configureStore({
   reducer: {
     category: categoryReducer,
+    featured: featuredReducer,
   },
   middleware: getDefaultMiddleware({
     serializableCheck: false,

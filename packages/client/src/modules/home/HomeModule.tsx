@@ -1,23 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {FlatList, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Header from '../../components/header';
 import Search from '../../components/search';
 import {selectCategoryList} from '../../stores/categoryStore';
+import {selectFeaturedList} from '../../stores/featuredStore';
 import {useAppSelector} from '../../stores/store';
-import fetchFeaturedList from '../../utils/featured/fetchFeaturedList';
 import HomeCategories from './components/categories';
 import HomeFeatured from './components/featured';
 
 const HomeModule = () => {
   const categories = useAppSelector(selectCategoryList);
-  const [featured, setFeatured] = useState<FeaturedModel[]>([]);
-
-  useEffect(() => {
-    fetchFeaturedList().then(data => {
-      setFeatured(data);
-    });
-  }, []);
+  const featured = useAppSelector(selectFeaturedList);
 
   return (
     <SafeAreaView className="bg-white">

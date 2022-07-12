@@ -3,6 +3,7 @@ import {StatusBar} from 'expo-status-bar';
 import React, {useLayoutEffect} from 'react';
 import HomeModule from '../modules/home';
 import CategoryProvider from '../providers/category';
+import FeaturedProvider from '../providers/featured';
 import type {RootStackParamList} from '../types/navigation';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
@@ -16,8 +17,10 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
 
   return (
     <CategoryProvider>
-      <HomeModule />
-      <StatusBar style="dark" />
+      <FeaturedProvider>
+        <HomeModule />
+        <StatusBar style="dark" />
+      </FeaturedProvider>
     </CategoryProvider>
   );
 };
