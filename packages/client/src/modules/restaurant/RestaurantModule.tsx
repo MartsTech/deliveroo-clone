@@ -1,7 +1,8 @@
 import React from 'react';
-import {ScrollView, View} from 'react-native';
+import {ScrollView, Text, View} from 'react-native';
 import {urlFor} from '../../utils/sanity';
 import RestaurantDescription from './components/description';
+import RestaurantDish from './components/dish';
 import RestaurantHeader from './components/header';
 import RestaurantOption from './components/option';
 
@@ -10,7 +11,7 @@ interface Props {
 }
 
 const RestaurantModule: React.FC<Props> = ({
-  restaurant: {image, title, rating, category, address, description},
+  restaurant: {image, title, rating, category, address, description, dishes},
 }) => {
   return (
     <ScrollView>
@@ -24,6 +25,12 @@ const RestaurantModule: React.FC<Props> = ({
           category={category.title}
         />
         <RestaurantOption title="Have a food allergy?" />
+      </View>
+      <View>
+        <Text className="mb-3 px-4 pt-6 text-xl font-bold">Menu</Text>
+        {dishes.map(dish => (
+          <RestaurantDish key={dish._id} dish={dish} />
+        ))}
       </View>
     </ScrollView>
   );
