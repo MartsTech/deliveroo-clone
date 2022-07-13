@@ -51,7 +51,7 @@ const BasketModule = () => {
         <BasketOrder
           total={total}
           fee={5.99}
-          onOrder={() => navigation.navigate('Ordering')}
+          onOrder={() => navigation.replace('Ordering')}
         />
       </View>
     </SafeAreaView>

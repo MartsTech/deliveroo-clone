@@ -29,7 +29,10 @@ const BasketOrder: React.FC<Props> = ({total, fee, onOrder}) => {
           <Currency quantity={total + fee} currency="EUR" />
         </Text>
       </View>
-      <TouchableOpacity className="rounded-lg bg-primary p-4" onPress={onOrder}>
+      <TouchableOpacity
+        className={`rounded-lg bg-primary p-4 ${total <= 0 && 'bg-gray-400'}`}
+        onPress={onOrder}
+        disabled={total <= 0}>
         <Text className="text-center text-lg font-bold text-white">
           Place Order
         </Text>

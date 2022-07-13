@@ -51,7 +51,7 @@ const RestaurantModule: React.FC<Props> = ({restaurant}) => {
           />
           <RestaurantOption title="Have a food allergy?" />
         </View>
-        <View className="pb-28">
+        <View className={`${items.length > 0 && 'pb-28'}`}>
           <Text className="mb-3 px-4 pt-6 text-xl font-bold">Menu</Text>
           {dishes.map(dish => (
             <RestaurantDish key={dish._id} dish={dish} />

@@ -10,7 +10,7 @@ const OrderingModule = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate('Delivery');
+      navigation.replace('Delivery');
     }, 4000);
   }, [navigation]);
 
