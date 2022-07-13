@@ -2,6 +2,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import BasketScreen from '../../screens/BasketScreen';
+import DeliveryScreen from '../../screens/DeliveryScreen';
 import HomeScreen from '../../screens/HomeScreen';
 import OrderingScreen from '../../screens/OrderingScreen';
 import RestaurantScreen from '../../screens/RestaurantScreen';
@@ -17,6 +18,7 @@ const NavigationProvider = () => {
         <RootStack.Screen name="Restaurant" component={RestaurantScreen} />
         <RootStack.Screen name="Basket" component={BasketScreen} />
         <RootStack.Screen name="Ordering" component={OrderingScreen} />
+        <RootStack.Screen name="Delivery" component={DeliveryScreen} />
       </RootStack.Navigator>
     </NavigationContainer>
   );
