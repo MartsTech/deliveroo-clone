@@ -12,6 +12,14 @@
       "image": "./assets/images/logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#14ccc4"
+    },
+    "ios": {
+      "bundleIdentifier": "com.deliveroo",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.deliveroo",
+      "versionCode": 1
     }
   }
 }
