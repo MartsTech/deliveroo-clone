@@ -1,8 +1,10 @@
 import {useNavigation} from '@react-navigation/native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View} from 'react-native';
 
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {useDispatch} from 'react-redux';
+import {resetBasket} from '../../stores/basketStore';
 import {selectSelectedRestaurant} from '../../stores/restaurantStore';
 import {useAppSelector} from '../../stores/store';
 import type {RootNavigationProps} from '../../types/navigation';
@@ -14,6 +16,11 @@ import DeliveryRider from './components/rider';
 const DeliveryModule = () => {
   const restaurant = useAppSelector(selectSelectedRestaurant);
   const navigation = useNavigation<RootNavigationProps>();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(resetBasket());
+  }, [dispatch]);
 
   return (
     <View className="flex-1 bg-primary">

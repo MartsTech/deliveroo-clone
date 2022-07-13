@@ -1,10 +1,14 @@
 import React, {useEffect} from 'react';
 import {ScrollView, Text, View} from 'react-native';
 import {
+  resetBasket,
   selectBasketDishList,
   selectBasketTotal,
 } from '../../stores/basketStore';
-import {setSelectedRestaurant} from '../../stores/restaurantStore';
+import {
+  selectSelectedRestaurant,
+  setSelectedRestaurant,
+} from '../../stores/restaurantStore';
 import {useAppDispatch, useAppSelector} from '../../stores/store';
 import {urlFor} from '../../utils/sanity';
 import RestaurantBasket from './components/basket';
@@ -23,11 +27,15 @@ const RestaurantModule: React.FC<Props> = ({restaurant}) => {
 
   const items = useAppSelector(selectBasketDishList);
   const total = useAppSelector(selectBasketTotal);
+  const selectedRestaurant = useAppSelector(selectSelectedRestaurant);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    if (selectedRestaurant?._id !== restaurant._id) {
+      dispatch(resetBasket());
+    }
     dispatch(setSelectedRestaurant(restaurant));
-  }, [restaurant, dispatch]);
+  }, [restaurant, selectedRestaurant, dispatch]);
 
   return (
     <>

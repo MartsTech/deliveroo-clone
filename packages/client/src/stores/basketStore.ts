@@ -26,10 +26,14 @@ export const basketSlice = createSlice({
         state.dishes = copy;
       }
     },
+    resetBasket: state => {
+      state.dishes = initialState.dishes;
+    },
   },
 });
 
-export const {addBasketDish, removeBasketDish} = basketSlice.actions;
+export const {addBasketDish, removeBasketDish, resetBasket} =
+  basketSlice.actions;
 
 export const selectBasketDishList = (state: RootState) => state.basket.dishes;
 
