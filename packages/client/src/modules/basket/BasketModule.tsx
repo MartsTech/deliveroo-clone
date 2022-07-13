@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import React, {useMemo} from 'react';
 import {FlatList, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -8,6 +9,7 @@ import {
 } from '../../stores/basketStore';
 import {selectSelectedRestaurant} from '../../stores/restaurantStore';
 import {useAppDispatch, useAppSelector} from '../../stores/store';
+import type {RootNavigationProps} from '../../types/navigation';
 import BasketDeliver from './components/deliver';
 import BasketHeader from './components/header';
 import BasketItem from './components/item';
@@ -18,6 +20,7 @@ const BasketModule = () => {
   const restaurant = useAppSelector(selectSelectedRestaurant);
   const total = useAppSelector(selectBasketTotal);
   const dispatch = useAppDispatch();
+  const navigation = useNavigation<RootNavigationProps>();
 
   const results = useMemo(
     () =>
@@ -45,7 +48,11 @@ const BasketModule = () => {
             />
           )}
         />
-        <BasketOrder total={total} fee={5.99} />
+        <BasketOrder
+          total={total}
+          fee={5.99}
+          onOrder={() => navigation.navigate('Ordering')}
+        />
       </View>
     </SafeAreaView>
   );

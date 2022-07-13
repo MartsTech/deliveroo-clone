@@ -5,9 +5,10 @@ import {Text, TouchableOpacity, View} from 'react-native';
 interface Props {
   total: number;
   fee: number;
+  onOrder: () => void;
 }
 
-const BasketOrder: React.FC<Props> = ({total, fee}) => {
+const BasketOrder: React.FC<Props> = ({total, fee, onOrder}) => {
   return (
     <View className="mt-5 space-y-4 bg-white p-5">
       <View className="flex-row justify-between">
@@ -28,7 +29,7 @@ const BasketOrder: React.FC<Props> = ({total, fee}) => {
           <Currency quantity={total + fee} currency="EUR" />
         </Text>
       </View>
-      <TouchableOpacity className="rounded-lg bg-primary p-4">
+      <TouchableOpacity className="rounded-lg bg-primary p-4" onPress={onOrder}>
         <Text className="text-center text-lg font-bold text-white">
           Place Order
         </Text>

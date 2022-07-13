@@ -4,6 +4,7 @@ type RootStackParamList = {
   Home: undefined;
   Restaurant: {restaurant: RestaurantModel};
   Basket: undefined;
+  Ordering: undefined;
 };
 
 type RootNavigationProps = NativeStackNavigationProp<RootStackParamList>;
