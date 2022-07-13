@@ -22,7 +22,7 @@ const BasketItem: React.FC<Props> = ({
         source={{uri: urlFor(image).url()}}
       />
       <Text className="flex-1">{title}</Text>
-      <Text className="mx-3 text-gray-600">
+      <Text className="mx-4 text-gray-600">
         <Currency quantity={price * quantity} currency="EUR" />
       </Text>
       <TouchableOpacity onPress={onRemove}>

@@ -1,16 +1,22 @@
 import React, {useMemo} from 'react';
 import {FlatList, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {removeBasketDish, selectBasketDishList} from '../../stores/basketStore';
+import {
+  removeBasketDish,
+  selectBasketDishList,
+  selectBasketTotal,
+} from '../../stores/basketStore';
 import {selectSelectedRestaurant} from '../../stores/restaurantStore';
 import {useAppDispatch, useAppSelector} from '../../stores/store';
 import BasketDeliver from './components/deliver';
 import BasketHeader from './components/header';
 import BasketItem from './components/item';
+import BasketOrder from './components/order';
 
 const BasketModule = () => {
   const items = useAppSelector(selectBasketDishList);
   const restaurant = useAppSelector(selectSelectedRestaurant);
+  const total = useAppSelector(selectBasketTotal);
   const dispatch = useAppDispatch();
 
   const results = useMemo(
@@ -39,6 +45,7 @@ const BasketModule = () => {
             />
           )}
         />
+        <BasketOrder total={total} fee={5.99} />
       </View>
     </SafeAreaView>
   );
