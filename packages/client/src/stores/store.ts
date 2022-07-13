@@ -8,12 +8,14 @@ import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 import basketReducer from './basketStore';
 import categoryReducer from './categoryStore';
 import featuredReducer from './featuredStore';
+import restaurantReducer from './restaurantStore';
 
 export const store = configureStore({
   reducer: {
     category: categoryReducer,
     featured: featuredReducer,
     basket: basketReducer,
+    restaurant: restaurantReducer,
   },
   middleware: getDefaultMiddleware({
     serializableCheck: false,

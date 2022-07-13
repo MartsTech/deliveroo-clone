@@ -1,11 +1,45 @@
-import React from 'react';
-import {Text} from 'react-native';
+import React, {useMemo} from 'react';
+import {FlatList, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {removeBasketDish, selectBasketDishList} from '../../stores/basketStore';
+import {selectSelectedRestaurant} from '../../stores/restaurantStore';
+import {useAppDispatch, useAppSelector} from '../../stores/store';
+import BasketDeliver from './components/deliver';
+import BasketHeader from './components/header';
+import BasketItem from './components/item';
 
 const BasketModule = () => {
+  const items = useAppSelector(selectBasketDishList);
+  const restaurant = useAppSelector(selectSelectedRestaurant);
+  const dispatch = useAppDispatch();
+
+  const results = useMemo(
+    () =>
+      items.reduce((groups, item) => {
+        // @ts-ignore
+        (groups[item._id] = groups[item._id] || []).push(item);
+        return groups;
+      }, {}) as {[id: string]: DishModel[]},
+    [items],
+  );
+
   return (
-    <SafeAreaView>
-      <Text>BasketModule</Text>
+    <SafeAreaView className="flex-1 bg-white">
+      <View className="flex-1 bg-gray-100">
+        <BasketHeader title={restaurant?.title || ''} />
+        <BasketDeliver />
+        <FlatList
+          data={Object.entries(results)}
+          keyExtractor={item => item[0]}
+          renderItem={({item}) => (
+            <BasketItem
+              quantity={item[1].length}
+              item={item[1][0]}
+              onRemove={() => dispatch(removeBasketDish(item[1][0]))}
+            />
+          )}
+        />
+      </View>
     </SafeAreaView>
   );
 };

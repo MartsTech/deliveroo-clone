@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {ScrollView, Text, View} from 'react-native';
 import {
   selectBasketDishList,
   selectBasketTotal,
 } from '../../stores/basketStore';
-import {useAppSelector} from '../../stores/store';
+import {setSelectedRestaurant} from '../../stores/restaurantStore';
+import {useAppDispatch, useAppSelector} from '../../stores/store';
 import {urlFor} from '../../utils/sanity';
 import RestaurantBasket from './components/basket';
 import RestaurantDescription from './components/description';
@@ -16,11 +17,17 @@ interface Props {
   restaurant: RestaurantModel;
 }
 
-const RestaurantModule: React.FC<Props> = ({
-  restaurant: {image, title, rating, category, address, description, dishes},
-}) => {
+const RestaurantModule: React.FC<Props> = ({restaurant}) => {
+  const {image, title, rating, category, address, description, dishes} =
+    restaurant;
+
   const items = useAppSelector(selectBasketDishList);
   const total = useAppSelector(selectBasketTotal);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(setSelectedRestaurant(restaurant));
+  }, [restaurant, dispatch]);
 
   return (
     <>
@@ -43,7 +50,9 @@ const RestaurantModule: React.FC<Props> = ({
           ))}
         </View>
       </ScrollView>
-      <RestaurantBasket itemsCount={items.length} totalPrice={total} />
+      {items.length > 0 && (
+        <RestaurantBasket itemsCount={items.length} totalPrice={total} />
+      )}
     </>
   );
 };
